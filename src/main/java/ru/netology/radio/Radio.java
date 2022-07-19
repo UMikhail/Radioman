@@ -1,51 +1,76 @@
 package ru.netology.radio;
 
 public class Radio {
-    //Радиостанции
-    public int currentStation;
+    //поле "Радиостанции"
+    private int maxStation = 9;
+    private int minStation = 0;
+    private int currentStation = minStation;
 
+    //поле "Громкость"
+    private int maxVolume = 100;
+    private int minVolume = 0;
+    private int currentVolume;
+
+    //Конструкторы для "Радиостанций"
+    public Radio(int size) {
+        maxStation = size - 1;
+    }
+
+    public Radio(){
+    }
+
+    //геттеры "Радиостанции"
     public int getCurrentStation() {
         return currentStation;
     }
 
+    public int getMaxStation() {
+        return maxStation;
+    }
+
+    public int getMinStation() {
+        return minStation;
+    }
+
+    //сеттер "Радиостанции"
     public void setCurrentStation(int newCurrentStation) {
-        if (newCurrentStation < 0) {
+        if (newCurrentStation < minStation) {
             return;
         }
-        if (newCurrentStation > 9) {
+        if (newCurrentStation > maxStation) {
             return;
         }
         currentStation = newCurrentStation;
     }
 
-    //Громкость
-    public int currentVolume;
+    //геттер "Громкость"
     public int getCurrentVolume() {
         return currentVolume;
     }
 
+    //сеттер "Громкость"
     public void setCurrentVolume(int newCurrentVolume) {
         currentVolume = newCurrentVolume;
     }
 
     //увеличение громкости на 1
     public void increaseVolume() {
-        if (currentVolume < 10) {
+        if (currentVolume < maxVolume) {
             currentVolume = currentVolume + 1;
         }
     }
 
     //уменьшение громкости на 1
     public void loweringVolume() {
-        if (currentVolume > 0) {
+        if (currentVolume > minVolume) {
             currentVolume = currentVolume - 1;
         }
     }
 
     //увеличение номера радиостанции на 1
     public void nextStation() {
-        if (currentStation == 9) {
-            currentStation = 0;
+        if (currentStation == maxStation) {
+            currentStation = minStation;
         } else {
             currentStation = currentStation + 1;
         }
@@ -53,8 +78,8 @@ public class Radio {
 
     //уменьшение номера радиостанции на 1
     public void prevStation() {
-        if (currentStation == 0) {
-            currentStation = 9;
+        if (currentStation == minStation) {
+            currentStation = maxStation;
         } else {
             currentStation = currentStation - 1;
         }
