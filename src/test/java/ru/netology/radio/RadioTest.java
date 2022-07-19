@@ -45,10 +45,10 @@ public class RadioTest {
     public void increaseVolumeSetUp() {
         Radio vol = new Radio();
 
-        vol.setCurrentVolume(10);
+        vol.setCurrentVolume(100);
         vol.increaseVolume();
 
-        int expected = 10;
+        int expected = 100;
         int actual = vol.getCurrentVolume();
 
         Assertions.assertEquals(expected, actual);
@@ -130,5 +130,19 @@ public class RadioTest {
         int actual = station.getCurrentStation();
 
         Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void endStation() {
+        Radio station = new Radio(30);
+
+        Assertions.assertEquals(29, station.getMaxStation());
+    }
+
+    @Test
+    public void firstStation() {
+        Radio station = new Radio(0);
+
+        Assertions.assertEquals(0, station.getMinStation());
     }
 }
